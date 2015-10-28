@@ -6,12 +6,23 @@ public class TextAdventure : MonoBehaviour {
 	public string currentRoom = "entryway";
 	public Camera myCamera;
 
-	public string room_north;
-	public string room_south;
-	public string room_east;
-	public string room_west;
+	private string room_north;
+	private string room_south;
+	private string room_east;
+	private string room_west;
 
 	private bool hasKey = false;
+
+	[Header ("Sound Effects")]
+	public AudioSource SFX;
+	public AudioClip sfx_getKey;
+	public AudioClip sfx_unlockDoor;
+
+	[Header ("Music")]
+	public AudioSource BGM;
+	public AudioClip bgm_main;
+	public AudioClip bgm_win;
+
 
 	// Use this for initialization
 	void Start () {
@@ -36,7 +47,8 @@ public class TextAdventure : MonoBehaviour {
 			break;
 		case "magicRoom":
 
-			myCamera.backgroundColor = Color.magenta;
+			// THIS WOULD CHANGE THE BG COLOR, BUT I DON'T WANNA!!!!
+//			myCamera.backgroundColor = Color.magenta;
 
 			textBuffer = "You are in the magic room.\n";
 
@@ -54,6 +66,8 @@ public class TextAdventure : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.M))
 			{
 				hasKey = true;
+				SFX.clip = sfx_getKey;
+				SFX.Play();
 				currentRoom = "got key";
 			}
 
@@ -76,12 +90,18 @@ public class TextAdventure : MonoBehaviour {
 		case "partyRoom":
 			textBuffer = "You are in the partyRoom.\n";
 
+			if (Input.GetKeyDown(KeyCode.E))
+			{
+				SFX.PlayOneShot(sfx_unlockDoor);
+			}
+
 			room_west = "magicRoom";
 			room_east = "party room door";
 			break;
 		case "party room door":
 			if (hasKey)
 			{
+			
 				textBuffer = "you use the key to open the door";
 
 				room_south = "after party room";
@@ -101,6 +121,13 @@ public class TextAdventure : MonoBehaviour {
 			textBuffer = "You are in the after party room.\n" +
 				"all of your friends are here.\n" +
 					"you won.";
+
+			BGM.clip = bgm_win;
+			if (!BGM.isPlaying)
+			{
+				BGM.Play();
+			}
+
 			break;
 		default:
 			break;
