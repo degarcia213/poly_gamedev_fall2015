@@ -6,16 +6,40 @@ public class TextAdventure : MonoBehaviour {
 	public string currentRoom = "entryway";
 	public Camera myCamera;
 
+	[Header("Audio stuff")]
+
+	public AudioSource bgm;
+	public AudioClip bgm_win;
+
+	public AudioSource sfx;
+	public AudioClip sfx_keyGet;
+	public AudioClip sfx_partyHorn;
+
+
+	[Header("rooms")]
 	public string room_north;
 	public string room_south;
 	public string room_east;
 	public string room_west;
 
+	private int currentExperience = 0;
+	private int expToLevel = 10;
+	private int level = 0;
+
 	private bool hasKey = false;
+
+	private bool monsterExists = false;
+
+	private bool roomEntered = false;
+
+	private bool won = false;
 
 	// Use this for initialization
 	void Start () {
-	
+
+
+
+		
 	}
 	
 	// Update is called once per frame
@@ -31,7 +55,27 @@ public class TextAdventure : MonoBehaviour {
 		case "entryway":
 			textBuffer = "You are in the entryway.\n";
 
+			if (!roomEntered)
+			{
+				float randomizer;
+				randomizer = Random.Range(0,1.0f);
+				Debug.Log (randomizer);
+				
+				if (randomizer > 0.5f)
+				{
+					monsterExists = true;
+				}
+
+			}
+
+			if (monsterExists)
+			{
+				textBuffer += "There's a monster.\n";
+			}
+
 			room_north = "magicRoom";
+
+			roomEntered = true;
 
 			break;
 		case "magicRoom":
@@ -53,7 +97,6 @@ public class TextAdventure : MonoBehaviour {
 
 			if (Input.GetKeyDown(KeyCode.M))
 			{
-				hasKey = true;
 				currentRoom = "got key";
 			}
 
@@ -66,6 +109,13 @@ public class TextAdventure : MonoBehaviour {
 				"a snake. And you cut the snake open, which\n" +
 					"is disgusting, but at least you found this key.\n" +
 					"leave. (press any key)";
+
+			if (!hasKey)
+			{
+				hasKey = true;
+				sfx.clip = sfx_keyGet;
+				sfx.Play();
+			}
 
 			if (Input.anyKeyDown)
 			{
@@ -101,6 +151,22 @@ public class TextAdventure : MonoBehaviour {
 			textBuffer = "You are in the after party room.\n" +
 				"all of your friends are here.\n" +
 					"you won.";
+	
+
+			if (!won)
+			{
+				sfx.volume = .5f;
+				sfx.PlayOneShot(sfx_partyHorn);
+				won = true;
+			}
+
+			bgm.clip = bgm_win;
+			if(!bgm.isPlaying)
+			{
+				bgm.Play ();
+			}
+
+
 			break;
 		default:
 			break;
@@ -114,7 +180,17 @@ public class TextAdventure : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.N))
 			{
 				currentRoom = room_north;
+				currentExperience += 1;
+
+				if (currentExperience >= expToLevel)
+				{
+					level += 1;
+				
+					currentExperience = 0;
+				}
+				roomEntered = false;
 			}
+
 		}
 		if (room_south != "")
 		{
@@ -123,6 +199,7 @@ public class TextAdventure : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.S))
 			{
 				currentRoom = room_south;
+				roomEntered = false;
 			}
 		}
 		if (room_east != "")
@@ -132,6 +209,7 @@ public class TextAdventure : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				currentRoom = room_east;
+				roomEntered = false;
 			}
 		}
 		if (room_west != "")
@@ -141,6 +219,7 @@ public class TextAdventure : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.W))
 			{
 				currentRoom = room_west;
+				roomEntered = false;
 			}
 		}
 
