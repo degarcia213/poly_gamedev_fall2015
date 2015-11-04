@@ -34,6 +34,7 @@ public class CamControl : MonoBehaviour {
 		for (int i = 0; i < cams.Length; i++)
 		{
 			cams[i].SetActive(false);
+			cams[i].transform.FindChild("bg").gameObject.SetActive(false);
 		}
 	}
 
@@ -43,6 +44,7 @@ public class CamControl : MonoBehaviour {
 
 		//activate camindex cam
 		cams[camIndex].SetActive(true);
+		cams[camIndex].transform.FindChild("bg").gameObject.SetActive(true);
 
 	}
 
