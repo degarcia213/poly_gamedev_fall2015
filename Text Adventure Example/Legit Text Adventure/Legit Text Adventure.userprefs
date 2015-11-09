@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Week10_Movement/Movement/Assets/Scripts/PlayerMovement.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Week 11/Week 11 - Prefabs/Assets/Scripts/Player.cs">
     <Files>
-      <File FileName="../../Week_10_Physics_Prep/New Unity Project/Assets/CamCtrl.cs" Line="1" Column="1" />
-      <File FileName="../../Week10_Movement/Movement/Assets/Scripts/PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="../../Week 11/Week 11 - Prefabs/Assets/Scripts/ClickToMove.cs" Line="43" Column="5" />
+      <File FileName="../../Week 11/Week 11 - Prefabs/Assets/Scripts/Enemy.cs" Line="24" Column="3" />
+      <File FileName="../../Week 11/Week 11 - Prefabs/Assets/Scripts/Player.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
