@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 
 	//if the enemy hits the player, the player loses health
 	void OnCollisionEnter(Collision col){
-		//decrease the health
+		//decrease the health if the collider's tag tells us it's an 'enemy'. We set the tag in the inspector underneath the object name.
 		if (col.collider.tag == "Enemy")
 		{
 			currentHealth -= 1;
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 	{
 		//instatiate a bullet and set it to newBullet
 		Bullet newBullet = (Bullet)Instantiate(bullet, transform.position + transform.forward, Quaternion.identity);
-		// move in the direction that the player's facing
+		// set the direction variable of newBullet to the direction the player's facing.
 		newBullet.direction = transform.forward;
 	}
 

@@ -32,6 +32,7 @@ public class ClickToMove : MonoBehaviour {
 				move.Normalize();
 				// move transform in that direction
 				transform.position += move * Time.deltaTime * moveSpeed;
+				// make the player look where they're moving
 				transform.rotation = Quaternion.LookRotation(move);
 
 				//set the magnitude of the vector to 1;

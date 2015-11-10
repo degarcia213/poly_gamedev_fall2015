@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		// make the bullet destroy itself after 5 seconds
 		Destroy(gameObject, 5.0f);
 	}
 	
