@@ -51,6 +51,8 @@
      <Compile Include="Assets\SCripts\ClickToMove.cs" />
      <Compile Include="Assets\SCripts\Enemy.cs" />
      <Compile Include="Assets\SCripts\GameManager.cs" />
+     <Compile Include="Assets\SCripts\LoadGame.cs" />
+     <Compile Include="Assets\SCripts\LoadScene.cs" />
      <Compile Include="Assets\SCripts\Player.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

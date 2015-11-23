@@ -7,27 +7,30 @@ public class GameManager : MonoBehaviour {
 	public Player player;
 	public Enemy basicEnemy;
 	public Enemy fierceEnemy;
-
-	HeaderAttribute["SPAWN"]
+	
 	public Transform[] spawnPoints;
-	public Slider healthBar;
-	public Gradient healthColors;
+
 
 	// Use this for initialization
 	void Start () {
 		// call the SpawnEnemy function once every second afer 1 second.
 		InvokeRepeating("SpawnEnemy", 1f, 1f);
-		healthBar.maxValue = player.maxHealth;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		healthBar.value = player.currentHealth;
+		if (Input.GetKeyDown(KeyCode.R))
+		{
+			Application.LoadLevel(Application.loadedLevelName);
+		}
 
-		fill1.color = healthColors.Evaluate(currentHealth/maxHealth);
-	
+		if (Input.GetKeyDown(KeyCode.M))
+		{
+			Application.LoadLevel("menu");
+		}
+
 	}
 
 	void SpawnEnemy()
