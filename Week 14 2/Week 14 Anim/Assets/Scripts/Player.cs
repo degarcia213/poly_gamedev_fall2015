@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey(KeyCode.W))
 		{
 			anim.SetBool("isWalking", true);
+			transform.position += transform.forward;
 		} else {
 
 			anim.SetBool("isWalking", false);
